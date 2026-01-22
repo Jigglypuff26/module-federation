@@ -1,26 +1,32 @@
 import React, { useState } from 'react';
 import './App.css';
 
-const App = () => {
-  const [todos, setTodos] = useState([
+interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+function App() {
+  const [todos, setTodos] = useState<Todo[]>([
     { id: 1, text: 'Learn Module Federation', completed: true },
     { id: 2, text: 'Build micro-frontends', completed: false },
     { id: 3, text: 'Deploy to production', completed: false },
   ]);
-  const [newTodo, setNewTodo] = useState('');
+  const [newTodo, setNewTodo] = useState<string>('');
 
-  const addTodo = () => {
+  const addTodo = (): void => {
     if (newTodo.trim()) {
       setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
       setNewTodo('');
     }
   };
 
-  const removeTodo = (id) => {
+  const removeTodo = (id: number): void => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  const toggleTodo = (id) => {
+  const toggleTodo = (id: number): void => {
     setTodos(
       todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo))
     );
@@ -28,6 +34,19 @@ const App = () => {
 
   const completedCount = todos.filter((t) => t.completed).length;
   const activeCount = todos.length - completedCount;
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter') {
+      addTodo();
+    }
+  };
+
+  const handleTodoKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>, id: number): void => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleTodo(id);
+    }
+  };
 
   return (
     <div className="react-app">
@@ -42,7 +61,7 @@ const App = () => {
               type="text"
               value={newTodo}
               onChange={(e) => setNewTodo(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && addTodo()}
+              onKeyPress={handleKeyPress}
               placeholder="Add a new todo..."
             />
             <button type="button" onClick={addTodo}>
@@ -57,12 +76,7 @@ const App = () => {
                   role="button"
                   tabIndex={0}
                   onClick={() => toggleTodo(todo.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      toggleTodo(todo.id);
-                    }
-                  }}
+                  onKeyDown={(e) => handleTodoKeyDown(e, todo.id)}
                 >
                   {todo.text}
                 </span>
@@ -90,6 +104,6 @@ const App = () => {
       </div>
     </div>
   );
-};
+}
 
 export default App;

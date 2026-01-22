@@ -54,6 +54,9 @@ module.exports = {
         './App': './src/app/app.component.ts',
         './AppElement': './src/app/app-element.ts',
       },
+      dts: {
+        generateTypes: false,
+      },
       shared: {
         '@angular/core': {
           singleton: true,

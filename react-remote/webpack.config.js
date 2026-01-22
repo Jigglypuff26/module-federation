@@ -3,7 +3,7 @@ const { ModuleFederationPlugin } = require('@module-federation/enhanced/webpack'
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.ts',
   mode: 'development',
   devServer: {
     port: 3001,
@@ -43,7 +43,10 @@ module.exports = {
       name: 'reactRemote',
       filename: 'remoteEntry.js',
       exposes: {
-        './App': './src/App',
+        './App': './src/App.tsx',
+      },
+      dts: {
+        generateTypes: false,
       },
       shared: {
         react: {

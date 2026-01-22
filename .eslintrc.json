@@ -16,6 +16,11 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   },
   "rules": {
@@ -72,8 +77,13 @@
       ],
       "parser": "@typescript-eslint/parser",
       "parserOptions": {
-        "project": ["./host/tsconfig.json", "./angular-remote/tsconfig.json"],
-        "tsconfigRootDir": "."
+        "project": [
+          "./host/tsconfig.json",
+          "./react-remote/tsconfig.json",
+          "./angular-remote/tsconfig.json"
+        ],
+        "tsconfigRootDir": ".",
+        "createDefaultProgram": true
       },
       "rules": {
         "no-unused-vars": "off",
@@ -87,7 +97,9 @@
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-explicit-any": "warn",
         "import/no-cycle": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+        "import/no-named-as-default": "off",
+        "@typescript-eslint/no-var-requires": "off"
       }
     },
     {
