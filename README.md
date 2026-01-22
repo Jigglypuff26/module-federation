@@ -50,48 +50,55 @@ cd angular-remote && npm install
 
 ### Запуск в режиме разработки
 
-#### Windows (PowerShell)
+#### Windows (PowerShell) - Рекомендуется
 
 ```powershell
-# Запустить все приложения одновременно
-.\start-dev.ps1
+# Запустить все приложения в отдельных окнах (удобно для разработки)
+.\scripts\start-dev.ps1
 
-# Или запустить каждое приложение в отдельном терминале
-# Terminal 1 - Host
-cd host
-npm start
+# Или запустить в фоновом режиме
+.\scripts\start.ps1
 
-# Terminal 2 - React Remote
-cd react-remote
-npm start
+# Остановить все приложения
+.\scripts\stop.ps1
+```
 
-# Terminal 3 - Vue Remote
-cd vue-remote
-npm start
+#### Windows (Command Prompt)
 
-# Terminal 4 - Angular Remote
-cd angular-remote
-npm start
+```cmd
+# Запустить все приложения
+scripts\start.bat
+
+# Остановить все приложения
+scripts\stop.bat
 ```
 
 #### Linux/Mac
 
 ```bash
-# Запустить все приложения одновременно
-./start-all.sh
+# Запустить все приложения (с tmux или в фоновом режиме)
+./scripts/start.sh
 
-# Или запустить каждое приложение в отдельном терминале
-# Terminal 1 - Host
-cd host && npm start
+# Остановить все приложения
+./scripts/stop.sh
+```
 
-# Terminal 2 - React Remote
+#### Ручной запуск (все платформы)
+
+Откройте 4 отдельных терминала:
+
+```bash
+# Terminal 1 - React Remote
 cd react-remote && npm start
 
-# Terminal 3 - Vue Remote
+# Terminal 2 - Vue Remote
 cd vue-remote && npm start
 
-# Terminal 4 - Angular Remote
+# Terminal 3 - Angular Remote
 cd angular-remote && npm start
+
+# Terminal 4 - Host
+cd host && npm start
 ```
 
 ### Доступ к приложениям
@@ -111,10 +118,28 @@ cd angular-remote && npm start
 
 ## 💻 Разработка
 
+### Скрипты запуска
+
+Все скрипты находятся в папке `scripts/`. Подробная документация: [`scripts/README.md`](scripts/README.md)
+
+**Быстрый старт:**
+- Windows: `.\scripts\start-dev.ps1`
+- Linux/Mac: `./scripts/start.sh`
+
 ### Структура проекта
 
 ```
 module-federation/
+├── scripts/                   # Скрипты запуска
+│   ├── start-dev.ps1         # PowerShell (отдельные окна)
+│   ├── start.ps1             # PowerShell (фоновый режим)
+│   ├── start.bat             # Windows CMD
+│   ├── start.sh              # Linux/Mac
+│   ├── stop.ps1              # Остановка (PowerShell)
+│   ├── stop.bat              # Остановка (CMD)
+│   ├── stop.sh               # Остановка (Linux/Mac)
+│   └── README.md             # Документация скриптов
+│
 ├── host/                      # Host приложение (React)
 │   ├── src/
 │   │   ├── components/
