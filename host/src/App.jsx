@@ -14,24 +14,32 @@ const App = () => {
           <h1>🚀 Module Federation Demo</h1>
           <p>Host Application with React, Vue & Angular Remotes</p>
         </header>
-        
+
         <nav className="nav">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/react" className="nav-link">React App</Link>
-          <Link to="/vue" className="nav-link">Vue App</Link>
-          <Link to="/angular" className="nav-link">Angular App</Link>
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+          <Link to="/react" className="nav-link">
+            React App
+          </Link>
+          <Link to="/vue" className="nav-link">
+            Vue App
+          </Link>
+          <Link to="/angular" className="nav-link">
+            Angular App
+          </Link>
         </nav>
 
         <main className="content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route 
-              path="/react" 
+            <Route
+              path="/react"
               element={
                 <Suspense fallback={<div className="loading">Loading React App...</div>}>
                   <ReactApp />
                 </Suspense>
-              } 
+              }
             />
             <Route path="/vue" element={<VueWrapper />} />
             <Route path="/angular" element={<AngularWrapper />} />

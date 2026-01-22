@@ -11,11 +11,7 @@ import { AppComponent } from './app.component';
  */
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    FormsModule
-  ],
+  imports: [BrowserModule, CommonModule, FormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   // Не указываем bootstrap, т.к. используем ngDoBootstrap
 })
@@ -29,7 +25,7 @@ export class AppModule implements DoBootstrap {
   ngDoBootstrap(): void {
     try {
       console.log('🔧 ngDoBootstrap called - registering Web Component...');
-      
+
       // Проверяем, не зарегистрирован ли уже элемент
       if (customElements.get('angular-app-element')) {
         console.log('⚠️ angular-app-element already registered, skipping');
@@ -38,13 +34,16 @@ export class AppModule implements DoBootstrap {
 
       // Создаём Web Component из Angular компонента
       const angularElement = createCustomElement(AppComponent, { injector: this.injector });
-      
+
       // Регистрируем custom element
       customElements.define('angular-app-element', angularElement);
       console.log('✅ Angular Web Component "angular-app-element" registered successfully');
-      
+
       // Проверяем регистрацию
-      console.log('✅ Verification: customElements.get("angular-app-element") =', !!customElements.get('angular-app-element'));
+      console.log(
+        '✅ Verification: customElements.get("angular-app-element") =',
+        !!customElements.get('angular-app-element')
+      );
     } catch (error) {
       console.error('❌ Error in ngDoBootstrap:', error);
       throw error;

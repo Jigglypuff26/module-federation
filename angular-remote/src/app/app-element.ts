@@ -32,8 +32,11 @@ export const angularElementReady = (() => {
     try {
       console.log('🚀 Initializing Angular Web Component with JIT compiler...');
       console.log('📦 Zone.js loaded:', typeof Zone !== 'undefined');
-      console.log('📦 Reflect.metadata available:', typeof Reflect !== 'undefined' && typeof Reflect.getMetadata === 'function');
-      
+      console.log(
+        '📦 Reflect.metadata available:',
+        typeof Reflect !== 'undefined' && typeof Reflect.getMetadata === 'function'
+      );
+
       // Проверяем, не был ли модуль уже загружен
       if (moduleRef) {
         console.log('✅ Angular module already initialized');
@@ -45,7 +48,7 @@ export const angularElementReady = (() => {
       moduleRef = await platformBrowserDynamic().bootstrapModule(AppModule, {
         ngZone: 'zone.js', // Явно указываем использование zone.js
       });
-      
+
       console.log('✅ Angular module bootstrapped, Web Component registered via ngDoBootstrap');
       return true;
     } catch (error) {

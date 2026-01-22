@@ -10,22 +10,22 @@ import { AppComponent } from './app/app.component';
  */
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
-  .then(moduleRef => {
-    // ngDoBootstrap зарегистрирует Web Component, но для standalone 
+  .then((moduleRef) => {
+    // ngDoBootstrap зарегистрирует Web Component, но для standalone
     // нам нужно вручную создать компонент в <app-root>
     const appRoot = document.querySelector('app-root');
     if (appRoot) {
       // Используем новый API createComponent (Angular 13+)
       const componentRef = createComponent(AppComponent, {
         environmentInjector: moduleRef.injector,
-        hostElement: appRoot
+        hostElement: appRoot,
       });
-      
+
       // Подключаем к ApplicationRef для change detection
       const appRef = moduleRef.injector.get(ApplicationRef);
       appRef.attachView(componentRef.hostView);
-      
+
       console.log('✅ Angular standalone app bootstrapped');
     }
   })
-  .catch(err => console.error('❌ Angular bootstrap error:', err));
+  .catch((err) => console.error('❌ Angular bootstrap error:', err));

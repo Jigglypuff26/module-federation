@@ -7,29 +7,19 @@
       <div class="todo-app">
         <h3>Todo List Demo</h3>
         <div class="input-group">
-          <input 
-            v-model="newTodo" 
-            @keyup.enter="addTodo"
-            placeholder="Add a new todo..."
-          />
+          <input v-model="newTodo" placeholder="Add a new todo..." @keyup.enter="addTodo" />
           <button @click="addTodo">Add</button>
         </div>
 
         <ul class="todo-list">
-          <li 
-            v-for="(todo, index) in todos" 
-            :key="index"
-            :class="{ completed: todo.completed }"
-          >
+          <li v-for="(todo, index) in todos" :key="index" :class="{ completed: todo.completed }">
             <span @click="toggleTodo(index)">{{ todo.text }}</span>
             <button @click="removeTodo(index)">×</button>
           </li>
         </ul>
 
         <div class="stats">
-          Total: {{ todos.length }} | 
-          Completed: {{ completedCount }} | 
-          Active: {{ activeCount }}
+          Total: {{ todos.length }} | Completed: {{ completedCount }} | Active: {{ activeCount }}
         </div>
       </div>
 
@@ -78,11 +68,11 @@ export default {
     };
 
     const completedCount = computed(() => {
-      return todos.value.filter(t => t.completed).length;
+      return todos.value.filter((t) => t.completed).length;
     });
 
     const activeCount = computed(() => {
-      return todos.value.filter(t => !t.completed).length;
+      return todos.value.filter((t) => !t.completed).length;
     });
 
     return {

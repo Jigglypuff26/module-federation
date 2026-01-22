@@ -5,7 +5,10 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "serve": "serve dist -p 3003"
+    "serve": "serve dist -p 3003",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.{ts,json,css}\""
   },
   "dependencies": {
     "@angular/common": "^17.0.6",

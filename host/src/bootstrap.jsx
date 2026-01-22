@@ -9,7 +9,10 @@ import App from './App';
 import './index.css';
 
 console.log('🚀 Host bootstrap: Zone.js loaded =', typeof Zone !== 'undefined');
-console.log('🚀 Host bootstrap: Reflect.metadata loaded =', typeof Reflect !== 'undefined' && typeof Reflect.getMetadata === 'function');
+console.log(
+  '🚀 Host bootstrap: Reflect.metadata loaded =',
+  typeof Reflect !== 'undefined' && typeof Reflect.getMetadata === 'function'
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

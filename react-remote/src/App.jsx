@@ -3,30 +3,30 @@ import './App.css';
 
 const App = () => {
   const [todos, setTodos] = useState([
-    { text: 'Learn Module Federation', completed: true },
-    { text: 'Build micro-frontends', completed: false },
-    { text: 'Deploy to production', completed: false },
+    { id: 1, text: 'Learn Module Federation', completed: true },
+    { id: 2, text: 'Build micro-frontends', completed: false },
+    { id: 3, text: 'Deploy to production', completed: false },
   ]);
   const [newTodo, setNewTodo] = useState('');
 
   const addTodo = () => {
     if (newTodo.trim()) {
-      setTodos([...todos, { text: newTodo, completed: false }]);
+      setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
       setNewTodo('');
     }
   };
 
-  const removeTodo = (index) => {
-    setTodos(todos.filter((_, i) => i !== index));
+  const removeTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  const toggleTodo = (index) => {
-    setTodos(todos.map((todo, i) => 
-      i === index ? { ...todo, completed: !todo.completed } : todo
-    ));
+  const toggleTodo = (id) => {
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+    );
   };
 
-  const completedCount = todos.filter(t => t.completed).length;
+  const completedCount = todos.filter((t) => t.completed).length;
   const activeCount = todos.length - completedCount;
 
   return (
@@ -34,25 +34,41 @@ const App = () => {
       <div className="card">
         <h2>⚛️ React Remote Application</h2>
         <p>This is an independent React micro-frontend</p>
-        
+
         <div className="todo-app">
           <h3>Todo List Demo</h3>
           <div className="input-group">
-            <input 
+            <input
               type="text"
               value={newTodo}
               onChange={(e) => setNewTodo(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && addTodo()}
               placeholder="Add a new todo..."
             />
-            <button onClick={addTodo}>Add</button>
+            <button type="button" onClick={addTodo}>
+              Add
+            </button>
           </div>
 
           <ul className="todo-list">
-            {todos.map((todo, index) => (
-              <li key={index} className={todo.completed ? 'completed' : ''}>
-                <span onClick={() => toggleTodo(index)}>{todo.text}</span>
-                <button onClick={() => removeTodo(index)}>×</button>
+            {todos.map((todo) => (
+              <li key={todo.id} className={todo.completed ? 'completed' : ''}>
+                <span
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => toggleTodo(todo.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      toggleTodo(todo.id);
+                    }
+                  }}
+                >
+                  {todo.text}
+                </span>
+                <button type="button" onClick={() => removeTodo(todo.id)}>
+                  ×
+                </button>
               </li>
             ))}
           </ul>
