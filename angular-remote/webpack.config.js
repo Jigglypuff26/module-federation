@@ -28,7 +28,14 @@ module.exports = {
         use: {
           loader: 'ts-loader',
           options: {
-            transpileOnly: true,
+            transpileOnly: false, // Важно для Angular декораторов
+            onlyCompileBundledFiles: true,
+            compilerOptions: {
+              emitDecoratorMetadata: true,
+              experimentalDecorators: true,
+              target: 'ES2022',
+              module: 'ES2022',
+            },
           },
         },
         exclude: /node_modules/,
@@ -97,6 +104,12 @@ module.exports = {
         },
         'zone.js': {
           singleton: true,
+          strictVersion: false,
+          eager: true,
+        },
+        'reflect-metadata': {
+          singleton: true,
+          strictVersion: false,
           eager: true,
         },
       },

@@ -69,56 +69,15 @@ module.exports = {
           requiredVersion: '^3.3.0',
           eager: true,
         },
-        // Angular dependencies для загрузки Angular Remote
-        '@angular/core': {
-          singleton: true,
-          strictVersion: false,
-          requiredVersion: '^17.0.0',
-          eager: true,
-        },
-        '@angular/common': {
-          singleton: true,
-          strictVersion: false,
-          requiredVersion: '^17.0.0',
-          eager: true,
-        },
-        '@angular/compiler': {
-          singleton: true,
-          strictVersion: false,
-          requiredVersion: '^17.0.0',
-          eager: true,
-        },
-        '@angular/forms': {
-          singleton: true,
-          strictVersion: false,
-          requiredVersion: '^17.0.0',
-          eager: true,
-        },
-        '@angular/platform-browser': {
-          singleton: true,
-          strictVersion: false,
-          requiredVersion: '^17.0.0',
-          eager: true,
-        },
-        '@angular/platform-browser-dynamic': {
-          singleton: true,
-          strictVersion: false,
-          requiredVersion: '^17.0.0',
-          eager: true,
-        },
-        '@angular/elements': {
-          singleton: true,
-          strictVersion: false,
-          requiredVersion: '^17.0.0',
-          eager: true,
-        },
-        rxjs: {
-          singleton: true,
-          strictVersion: false,
-          eager: true,
-        },
+        // Полифиллы для Angular (загружаются в host для всех Angular remotes)
         'zone.js': {
           singleton: true,
+          strictVersion: false,
+          eager: true,
+        },
+        'reflect-metadata': {
+          singleton: true,
+          strictVersion: false,
           eager: true,
         },
       },
