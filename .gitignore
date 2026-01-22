@@ -9,11 +9,17 @@ build/
 *.log
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo
 *~
+
+# VS Code - keep settings but ignore user-specific files
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
 
 # OS
 .DS_Store
@@ -27,3 +33,4 @@ Thumbs.db
 # Cache
 .cache/
 *.tsbuildinfo
+.eslintcache

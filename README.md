@@ -26,7 +26,7 @@
 ✅ Shared dependencies между приложениями  
 ✅ Angular Elements (Web Components) для фреймворк-агностичной интеграции  
 ✅ Hot Module Replacement для быстрой разработки  
-✅ TypeScript поддержка  
+✅ TypeScript поддержка
 
 ## 🚀 Быстрый старт
 
@@ -118,11 +118,46 @@ cd host && npm start
 
 ## 💻 Разработка
 
+### Code Quality - ESLint и Prettier
+
+Проект настроен с современными стандартами **Airbnb** для всех фреймворков.
+
+📚 **[Документация по линтингу](docs/README.md)**
+
+- 🚀 [Быстрый старт](docs/GETTING_STARTED_LINTING.md) - Настройка за 5 минут
+- ⚡ [Шпаргалка команд](docs/LINTING_CHEATSHEET.md) - Все команды и правила
+- 📖 [Полная документация](docs/LINTING.md) - Настройки и troubleshooting
+- 💡 [Примеры правил](docs/ESLINT_RULES_EXAMPLES.md) - Примеры кода
+
+#### Быстрые команды
+
+```bash
+# Проверка кода (ESLint + Prettier) - рекомендуется
+npm run check
+
+# Исправить все проблемы (ESLint + Prettier) - рекомендуется
+npm run fix
+
+# Отдельные команды
+npm run lint          # Проверить только ESLint
+npm run lint:fix      # Исправить только ESLint
+npm run format        # Отформатировать только Prettier
+```
+
+📋 [Полный список команд](docs/LINTING_CHEATSHEET.md)
+
+#### Автоматическое форматирование в VS Code
+
+- Установите рекомендуемые расширения (ESLint, Prettier, Volar)
+- Форматирование происходит автоматически при сохранении файла
+- ESLint исправляет ошибки автоматически при сохранении
+
 ### Скрипты запуска
 
 Все скрипты находятся в папке `scripts/`. Подробная документация: [`scripts/README.md`](scripts/README.md)
 
 **Быстрый старт:**
+
 - Windows: `.\scripts\start-dev.ps1`
 - Linux/Mac: `./scripts/start.sh`
 
@@ -197,7 +232,7 @@ new ModuleFederationPlugin({
     'zone.js': { singleton: true, eager: true },
     'reflect-metadata': { singleton: true, eager: true },
   },
-})
+});
 ```
 
 #### Remote приложения
@@ -235,8 +270,8 @@ Angular использует Angular Elements (Web Components) для интег
 
 ```typescript
 // angular-remote/src/app/app-element.ts
-import 'reflect-metadata';  // Для DI
-import 'zone.js';           // Для change detection
+import 'reflect-metadata'; // Для DI
+import 'zone.js'; // Для change detection
 import '@angular/compiler'; // Для JIT компиляции
 
 export const angularElementReady = (async () => {
@@ -250,8 +285,8 @@ export class AppModule implements DoBootstrap {
   constructor(@Inject(Injector) private injector: Injector) {}
 
   ngDoBootstrap(): void {
-    const element = createCustomElement(AppComponent, { 
-      injector: this.injector 
+    const element = createCustomElement(AppComponent, {
+      injector: this.injector,
     });
     customElements.define('angular-app-element', element);
   }
@@ -317,9 +352,9 @@ headers: {
 
 ```javascript
 shared: {
-  react: { 
-    singleton: true, 
-    strictVersion: false 
+  react: {
+    singleton: true,
+    strictVersion: false
   }
 }
 ```

@@ -1,0 +1,109 @@
+import React, { useState } from 'react';
+import './App.css';
+
+interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
+}
+
+function App() {
+  const [todos, setTodos] = useState<Todo[]>([
+    { id: 1, text: 'Learn Module Federation', completed: true },
+    { id: 2, text: 'Build micro-frontends', completed: false },
+    { id: 3, text: 'Deploy to production', completed: false },
+  ]);
+  const [newTodo, setNewTodo] = useState<string>('');
+
+  const addTodo = (): void => {
+    if (newTodo.trim()) {
+      setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
+      setNewTodo('');
+    }
+  };
+
+  const removeTodo = (id: number): void => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const toggleTodo = (id: number): void => {
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo))
+    );
+  };
+
+  const completedCount = todos.filter((t) => t.completed).length;
+  const activeCount = todos.length - completedCount;
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter') {
+      addTodo();
+    }
+  };
+
+  const handleTodoKeyDown = (e: React.KeyboardEvent<HTMLSpanElement>, id: number): void => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleTodo(id);
+    }
+  };
+
+  return (
+    <div className="react-app">
+      <div className="card">
+        <h2>⚛️ React Remote Application</h2>
+        <p>This is an independent React micro-frontend</p>
+
+        <div className="todo-app">
+          <h3>Todo List Demo</h3>
+          <div className="input-group">
+            <input
+              type="text"
+              value={newTodo}
+              onChange={(e) => setNewTodo(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder="Add a new todo..."
+            />
+            <button type="button" onClick={addTodo}>
+              Add
+            </button>
+          </div>
+
+          <ul className="todo-list">
+            {todos.map((todo) => (
+              <li key={todo.id} className={todo.completed ? 'completed' : ''}>
+                <span
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => toggleTodo(todo.id)}
+                  onKeyDown={(e) => handleTodoKeyDown(e, todo.id)}
+                >
+                  {todo.text}
+                </span>
+                <button type="button" onClick={() => removeTodo(todo.id)}>
+                  ×
+                </button>
+              </li>
+            ))}
+          </ul>
+
+          <div className="stats">
+            Total: {todos.length} | Completed: {completedCount} | Active: {activeCount}
+          </div>
+        </div>
+
+        <div className="info">
+          <h3>📦 Module Federation Info</h3>
+          <ul>
+            <li>Port: 3001</li>
+            <li>Framework: React 18</li>
+            <li>Exposed Module: ./App</li>
+            <li>Shared: react, react-dom</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
