@@ -18,25 +18,16 @@ export const AngularWrapper = () => {
 
     const loadAngularApp = async () => {
       try {
-        console.log('🚀 Loading Angular Remote App via Module Federation...');
         setLoading(true);
 
         // Загружаем Angular Element через Module Federation
         const { angularElementReady } = await import('angularRemote/AppElement');
-        console.log('✅ Angular Remote Element module loaded via Module Federation');
-        console.log('📦 Using shared Angular instance with JIT compiler (singleton)');
 
         // Ждём завершения регистрации custom element
-        console.log('⏳ Waiting for Angular Web Component registration...');
         await angularElementReady;
 
         if (isMounted) {
-          console.log('✅ Angular Web Component registered and ready');
-          console.log('🎯 Module Federation benefits:');
-          console.log('  - Shared Angular runtime with JIT compiler (no duplication)');
-          console.log('  - Web Components standard');
-          console.log('  - Framework-agnostic integration');
-          console.log('  - Dynamic module loading');
+          console.log('✅ Angular remote app loaded successfully via Module Federation');
           setIsElementDefined(true);
           setLoading(false);
         }

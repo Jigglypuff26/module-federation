@@ -27,10 +27,11 @@ export const VueWrapper = () => {
           appRef.current = Vue.createApp(component);
           appRef.current.mount(containerRef.current);
 
+          console.log('✅ Vue remote app loaded successfully via Module Federation');
           setLoading(false);
         }
       } catch (err) {
-        console.error('Failed to load Vue app:', err);
+        console.error('❌ Failed to load Vue app:', err);
         if (isMounted) {
           setError(err.message || 'Unknown error');
           setLoading(false);

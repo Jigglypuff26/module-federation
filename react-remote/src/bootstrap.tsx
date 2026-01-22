@@ -14,3 +14,5 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+console.log('✅ React remote app bootstrapped successfully');

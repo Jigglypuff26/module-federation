@@ -25,7 +25,7 @@ platformBrowserDynamic()
       const appRef = moduleRef.injector.get(ApplicationRef);
       appRef.attachView(componentRef.hostView);
 
-      console.log('✅ Angular standalone app bootstrapped');
+      console.log('✅ Angular standalone app bootstrapped successfully');
     }
   })
   .catch((err) => console.error('❌ Angular bootstrap error:', err));

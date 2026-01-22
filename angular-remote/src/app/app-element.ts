@@ -30,16 +30,8 @@ export const angularElementReady = (() => {
 
   initializationPromise = (async () => {
     try {
-      console.log('🚀 Initializing Angular Web Component with JIT compiler...');
-      console.log('📦 Zone.js loaded:', typeof Zone !== 'undefined');
-      console.log(
-        '📦 Reflect.metadata available:',
-        typeof Reflect !== 'undefined' && typeof Reflect.getMetadata === 'function'
-      );
-
       // Проверяем, не был ли модуль уже загружен
       if (moduleRef) {
-        console.log('✅ Angular module already initialized');
         return true;
       }
 
@@ -49,7 +41,7 @@ export const angularElementReady = (() => {
         ngZone: 'zone.js', // Явно указываем использование zone.js
       });
 
-      console.log('✅ Angular module bootstrapped, Web Component registered via ngDoBootstrap');
+      console.log('✅ Angular module initialized successfully');
       return true;
     } catch (error) {
       console.error('❌ Failed to initialize Angular Web Component:', error);

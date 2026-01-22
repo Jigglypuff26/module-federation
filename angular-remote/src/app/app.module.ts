@@ -17,18 +17,12 @@ import { AppComponent } from './app.component';
 })
 export class AppModule implements DoBootstrap {
   // Явно указываем токен для DI
-  constructor(@Inject(Injector) private injector: Injector) {
-    console.log('📦 AppModule constructor called');
-    console.log('📦 Injector available:', !!injector);
-  }
+  constructor(@Inject(Injector) private injector: Injector) {}
 
   ngDoBootstrap(): void {
     try {
-      console.log('🔧 ngDoBootstrap called - registering Web Component...');
-
       // Проверяем, не зарегистрирован ли уже элемент
       if (customElements.get('angular-app-element')) {
-        console.log('⚠️ angular-app-element already registered, skipping');
         return;
       }
 
@@ -38,12 +32,6 @@ export class AppModule implements DoBootstrap {
       // Регистрируем custom element
       customElements.define('angular-app-element', angularElement);
       console.log('✅ Angular Web Component "angular-app-element" registered successfully');
-
-      // Проверяем регистрацию
-      console.log(
-        '✅ Verification: customElements.get("angular-app-element") =',
-        !!customElements.get('angular-app-element')
-      );
     } catch (error) {
       console.error('❌ Error in ngDoBootstrap:', error);
       throw error;
