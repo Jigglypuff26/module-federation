@@ -1,0 +1,129 @@
+.react-app {
+  padding: 20px;
+}
+
+.card {
+  background: linear-gradient(135deg, #61dafb 0%, #21a1c4 100%);
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 5px 15px rgba(97, 218, 251, 0.3);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.todo-app {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.input-group button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  background: white;
+  color: #21a1c4;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.input-group button:hover {
+  transform: scale(1.05);
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  margin-bottom: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.todo-list li:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.todo-list li.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.todo-list li button {
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  color: #21a1c4;
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.todo-list li button:hover {
+  transform: rotate(90deg);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.stats {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.info {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.info ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.info li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info li:last-child {
+  border-bottom: none;
+}

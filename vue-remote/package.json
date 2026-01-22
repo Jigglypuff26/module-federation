@@ -1,0 +1,25 @@
+{
+  "name": "vue-remote",
+  "version": "1.0.0",
+  "description": "Vue Remote Micro-frontend",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "serve": "serve dist -p 3002"
+  },
+  "dependencies": {
+    "vue": "^3.3.11"
+  },
+  "devDependencies": {
+    "@module-federation/enhanced": "^0.2.3",
+    "@vue/compiler-sfc": "^3.3.11",
+    "css-loader": "^6.8.1",
+    "html-webpack-plugin": "^5.5.4",
+    "serve": "^14.2.1",
+    "style-loader": "^3.3.3",
+    "vue-loader": "^17.4.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}

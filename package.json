@@ -1,0 +1,25 @@
+{
+  "name": "module-federation-demo",
+  "version": "1.0.0",
+  "description": "Module Federation with React, Vue, and Angular",
+  "scripts": {
+    "install:all": "npm install && cd host && npm install && cd ../react-remote && npm install && cd ../vue-remote && npm install && cd ../angular-remote && npm install",
+    "start:host": "cd host && npm start",
+    "start:react": "cd react-remote && npm start",
+    "start:vue": "cd vue-remote && npm start",
+    "start:angular": "cd angular-remote && npm start",
+    "start:all": "concurrently \"npm run start:host\" \"npm run start:react\" \"npm run start:vue\" \"npm run start:angular\"",
+    "build:all": "cd host && npm run build && cd ../react-remote && npm run build && cd ../vue-remote && npm run build && cd ../angular-remote && npm run build"
+  },
+  "keywords": [
+    "module-federation",
+    "webpack",
+    "micro-frontend",
+    "react",
+    "vue",
+    "angular"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
